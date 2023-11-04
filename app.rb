@@ -46,7 +46,20 @@ get("/payment/results") do
   
   @numerator = r * pv
   @denominator = 1 - ((1 + r) ** -n)
-  @the_result = @numerator/@denominator
+  @the_result = (@numerator/@denominator)
   
   erb(:payment_results)
+end
+
+get("/random/new") do
+  erb(:random_calc)
+end
+
+get("/random/results") do
+  @the_num = params.fetch("user's_number").to_f
+  @the_num_2 = params.fetch("user's_number_2").to_f
+  
+  @the_result = rand(@the_num..@the_num_2)
+  
+  erb(:random_results)
 end
